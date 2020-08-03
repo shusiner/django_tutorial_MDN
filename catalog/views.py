@@ -140,3 +140,27 @@ class BookDelete(PermissionRequiredMixin,DeleteView):
     permission_required = 'catalog.can_mark_returned'
     model = Book
     success_url = reverse_lazy('books')
+
+# for file upload
+from locallibrary import settings
+import os
+from django.http import JsonResponse
+
+def upload_book_photo(request):
+    data=request.FILES.get('file')
+    bookid=request.POST.get('bookid')
+    
+    book=Book.objects.get(id=bookid)
+
+    # this removes the image
+    if book.document:
+        advpath = book.document.url.split(settings.MEDIA_URL)
+        os.remove(os.path.join(settings.MEDIA_ROOT,advpath[1]))
+
+    book.document=data
+    book.save()
+
+    data = {
+        'ok' : 'ok',
+    }
+    return JsonResponse(data)

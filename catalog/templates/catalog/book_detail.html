@@ -1,6 +1,16 @@
 {% extends "base_generic.html" %}
 
+{% block head %}
+{% load static %}
+<link rel="stylesheet/less" type="text/css" href="{% static 'less/pf.less' %}" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+{% endblock %}
 {% block content %}
+
   <h1>Title: {{ book.title }}</h1>
   {% if book.author %}
   <p><strong>Author:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p>
@@ -11,6 +21,19 @@
   <p><strong>ISBN:</strong> {{ book.isbn }}</p> 
   <p><strong>Language:</strong> {{ book.language }}</p>  
   <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p> 
+  <p><strong>Img:</strong></p>        
+  <div class="avatar-upload cursor-default">
+      <div class="avatar-edit">
+      <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+      <label for="imageUpload"></label>
+      </div>
+      <div class="avatar-preview">
+      <div class="imagePreview" style="background-image: url(
+          {{ book.document.url }}
+          );">
+      </div>
+      </div>
+  </div>
 
   {% if perms.catalog.can_mark_returned %}
     <p><a href="{% url 'book_update' book.pk %}">Update</a> <a href="{% url 'book_delete' book.pk %}">Delete</a></p>
@@ -31,4 +54,38 @@
       <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
     {% endfor %}
   </div>
+
+<script>
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var result = e.target.result;
+        var url = "upload_book_photo"
+        var fileName = input.files[0].name;
+        var fd = new FormData();
+        fd.append("file", input.files[0], fileName);
+        fd.append("csrfmiddlewaretoken", '{{ csrf_token }}');
+        fd.append("bookid", '{{ book.id }}');
+        $.ajax({   
+          type: "POST",                    
+          url: url,                    
+          data: fd,
+          cache: false,
+          contentType: false, // Must put to parse csrf_token via ajax
+          processData: false, // Must put to parse csrf_token via ajax
+          success: function (data) {
+          }
+        });
+        $('.imagePreview').css('background-image', 'url('+e.target.result +')');
+        $('.imagePreview').hide();
+        $('.imagePreview').fadeIn(650);
+      }
+      reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#imageUpload").change(function() {
+        readURL(this);
+    }); 
+</script>
 {% endblock %}
