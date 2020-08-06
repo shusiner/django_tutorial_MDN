@@ -16,3 +16,9 @@ htmlcov/
 *.bak
 
 media/
+
+staticfiles/admin/
+
+staticfiles/less/
+
+staticfiles/images/

@@ -1,0 +1,24 @@
+catalog\seed_data.py:1:1 'from catalog.models import *' used; unable to detect undefined names
+catalog\seed_data.py:2:8 'Genre' may be undefined, or defined from star imports: [E] PYFLAKES:catalog.models
+catalog\seed_data.py:4:7 'Book' may be undefined, or defined from star imports: [E] PYFLAKES:catalog.models
+catalog\views.py:2:1 'catalog.models.Genre' imported but unused
+catalog\test\test_views.py:64:9 local variable 'test_genre' is assigned to but never used
+catalog\test\test_views.py:98:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:110:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:149:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:187:9 local variable 'test_genre' is assigned to but never used
+catalog\test\test_views.py:229:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:235:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:242:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:251:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:256:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:264:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:272:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:278:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:285:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:311:9 local variable 'login' is assigned to but never used
+catalog\test\test_views.py:316:9 local variable 'login' is assigned to but never used
+..\..\Envs\test123\lib\site-packages\django\contrib\messages\__init__.py:1:1 'from django.contrib.messages.api import *' used; unable to detect undefined names
+..\..\Envs\test123\lib\site-packages\django\contrib\messages\__init__.py:1:1 'django.contrib.messages.api.*' imported but unused
+..\..\Envs\test123\lib\site-packages\django\contrib\messages\__init__.py:2:1 'from django.contrib.messages.constants import *' used; unable to detect undefined names
+..\..\Envs\test123\lib\site-packages\django\contrib\messages\__init__.py:2:1 'django.contrib.messages.constants.*' imported but unused
