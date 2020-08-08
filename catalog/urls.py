@@ -28,3 +28,7 @@ urlpatterns += [
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book_delete'),
     path('book/upload_book_photo', views.upload_book_photo, name='upload_book_photo'),
 ]
+
+urlpatterns += [
+    path('signup/', views.SignUp.as_view(), name='signup'),
+]

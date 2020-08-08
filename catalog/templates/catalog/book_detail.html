@@ -29,7 +29,9 @@
       </div>
       <div class="avatar-preview">
       <div class="imagePreview" style="background-image: url(
+        {% if book.document %}
           {{ book.document.url }}
+        {% endif %}
           );">
       </div>
       </div>
